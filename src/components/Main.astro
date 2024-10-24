@@ -1,0 +1,10 @@
+---
+import Card from "../components/Card.astro";
+import { getCollection } from "astro:content";
+
+const entries = await getCollection("blim-city");
+---
+
+<ul class="w-1/2 m-auto">
+  {entries.map((en) => <Card data={en.data} />)}
+</ul>

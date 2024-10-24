@@ -1,10 +1,21 @@
 ---
+import { getEntry } from "astro:content";
+
 interface Props {
-  title: string;
-  description: string;
+  data: {
+    title: string;
+    description: string;
+    slug: string;
+    collection: string;
+    comments: { author: string; content: string }[];
+  };
 }
 
-const { title, description } = Astro.props;
+const {
+  data: { title, description, slug, comments },
+} = Astro.props;
+
+const entry = await getEntry("blim-city", slug);
 ---
 
 <li>
@@ -16,6 +27,16 @@ const { title, description } = Astro.props;
       </a>
     </div>
   </div>
+  <ul>
+    {
+      comments.map((c) => (
+        <li>
+          <a>{c.author}</a>
+          <p>{c.content}</p>
+        </li>
+      ))
+    }
+  </ul>
 </li>
 
 <style>
