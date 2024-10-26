@@ -1,6 +1,4 @@
 ---
-import { getEntry } from "astro:content";
-
 interface Props {
   data: {
     title: string;
@@ -12,13 +10,11 @@ interface Props {
 }
 
 const {
-  data: { title, description, slug, comments },
+  data: { title, description, slug },
 } = Astro.props;
-
-const entry = await getEntry("blim-city", slug);
 ---
 
-<a class="flex gap-4 overflow-scroll" href={`/${slug}`}>
+<a class="flex gap-4 overflow-scroll" href={`/threads/${slug}`}>
   <div class="container">
     <div class="link-card">
       <h2>{title}</h2>

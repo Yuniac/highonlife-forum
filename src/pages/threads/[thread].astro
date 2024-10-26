@@ -1,0 +1,22 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import { normalizeSlug } from "../../utils/normalizeSlug";
+
+export function getStaticPaths() {
+  return [
+    { params: { thread: "blim-city-banter" } },
+    { params: { thread: "combat-tactics-and-strategies" } },
+    { params: { thread: "zephyr-paradise" } },
+    { params: { thread: "port-terrene-hangout" } },
+  ];
+}
+
+const { thread } = Astro.params;
+---
+
+<Layout title={normalizeSlug(thread)}>
+  <Header />
+  <h1>Thread: {thread}</h1>
+  <p>Welcome to the thread page for!</p>
+</Layout>
