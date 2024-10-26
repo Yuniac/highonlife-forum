@@ -1,0 +1,96 @@
+---
+import { normalizeSlug } from "../utils/normalizeSlug";
+
+interface Props {
+  thread?: string;
+  headers: string[];
+  rows: string[][];
+}
+
+const { thread, headers, rows } = Astro.props;
+---
+
+<table class="w-full">
+  <thead class="table-caption">
+    <tr class="flex w-full">
+      <th class="thead main-cell"
+        >{thread ? normalizeSlug(thread).toUpperCase() : headers[0]}</th
+      >
+      <th class="thead">{headers[1]}</th>
+      <th class="thead">{headers[2]}</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {
+      rows.map((r) => (
+        <tr class="flex">
+          <td class="main-cell">
+            <a class="main-cell" href="/wahtever">
+              <img class="icon" src="/pin.svg" />
+              <p>{r[0]}</p>
+            </a>
+          </td>
+          <td class="cell">
+            <a class="cell" href="/wahtever">
+              {r[1]}
+            </a>
+          </td>
+          <td class="cell">
+            <a class="cell" href="/wahtever" />
+            {r[2]}
+          </td>
+        </tr>
+      ))
+    }
+  </tbody>
+</table>
+
+<style>
+  .thead {
+    background-color: #23262d;
+    color: white;
+    padding: 1rem;
+    flex: 1;
+
+    background: linear-gradient(
+      180deg,
+      rgba(58, 80, 183, 1) 16%,
+      rgba(19, 21, 26, 1) 100%
+    );
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  td {
+    color: var(--main);
+  }
+  .cell {
+    text-align: center;
+    flex: 1;
+    padding-right: 1.5rem;
+  }
+  .main-cell {
+    text-align: left;
+    padding: 0 1.3rem;
+    flex: 3;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .icon {
+    border-radius: 50%;
+    border: 1px solid var(--sub);
+    padding: 5px;
+  }
+
+  tbody tr {
+    padding: 0.5rem;
+  }
+  tbody tr:hover {
+    cursor: pointer;
+    background: rgba(212, 224, 247, 0.5);
+    outline: 1px solid var(--main);
+  }
+</style>

@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Header from "../../components/Header.astro";
+import Table from "../../components/Table.astro";
 import { normalizeSlug } from "../../utils/normalizeSlug";
 
 export function getStaticPaths() {
@@ -16,7 +17,12 @@ const { thread } = Astro.params;
 ---
 
 <Layout title={normalizeSlug(thread)}>
-  <Header />
-  <h1>Thread: {thread}</h1>
-  <p>Welcome to the thread page for!</p>
+  <Header title={normalizeSlug(thread).toUpperCase()} />
+  <div class="px-10 w-full flex flex-col gap-8">
+    <Table
+      thread={thread}
+      headers={[normalizeSlug(thread).toUpperCase(), "REPLIES", "VIEWS"]}
+      rows={[[]]}
+    />
+  </div>
 </Layout>
