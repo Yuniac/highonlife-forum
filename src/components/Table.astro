@@ -1,5 +1,6 @@
 ---
 import { normalizeSlug } from "../utils/normalizeSlug";
+import { slugANormal } from "../utils/slugANormal";
 
 interface Props {
   thread?: string;
@@ -13,11 +14,21 @@ const { thread, headers, rows } = Astro.props;
 <table class="w-full">
   <thead class="table-caption">
     <tr class="flex w-full">
-      <th class="thead main-cell justify-center"
-        >{thread ? normalizeSlug(thread).toUpperCase() : headers[0]}</th
-      >
-      <th class="thead">{headers[1]}</th>
-      <th class="thead">{headers[2]}</th>
+      <th class="thead main-cell justify-center">
+        <a class="main-cell" href="/wahtever">
+          {thread ? normalizeSlug(thread).toUpperCase() : headers[0]}</a
+        >
+      </th>
+      <th class="thead">
+        <a class="main-cell" href="/wahtever">
+          {headers[1]}
+        </a>
+      </th>
+      <th class="thead">
+        <a class="main-cell" href="/wahtever">
+          {headers[2]}
+        </a>
+      </th>
     </tr>
   </thead>
 
@@ -26,7 +37,10 @@ const { thread, headers, rows } = Astro.props;
       rows.map((r) => (
         <tr class="flex">
           <td class="main-cell">
-            <a class="main-cell" href="/wahtever">
+            <a
+              class="main-cell"
+              href={`/threads/${thread}/${slugANormal(r.title)}`}
+            >
               <img
                 class="icon"
                 src={r.root ? "/pin.svg" : "/check.svg"}
@@ -36,12 +50,12 @@ const { thread, headers, rows } = Astro.props;
             </a>
           </td>
           <td class="cell">
-            <a class="cell" href="/wahtever">
+            <a class="cell" href={`/threads/${thread}/${slugANormal(r.title)}`}>
               {r.replies}
             </a>
           </td>
           <td class="cell">
-            <a class="cell" href="/wahtever">
+            <a class="cell" href={`/threads/${thread}/${slugANormal(r.title)}`}>
               {r.views}
             </a>
           </td>

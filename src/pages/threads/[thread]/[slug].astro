@@ -1,0 +1,171 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import { getEntry } from "astro:content";
+import { slugANormal } from "../../../utils/slugANormal";
+
+export function getStaticPaths() {
+  return [
+    {
+      params: {
+        thread: "blim-city-banter",
+        slug: slugANormal("Anything new in Downtown Blim?"),
+      },
+    },
+    {
+      params: {
+        thread: "blim-city-banter",
+        slug: slugANormal("The truth about the Blim City Slums"),
+      },
+    },
+    {
+      params: {
+        thread: "blim-city-banter",
+        slug: slugANormal("I have information about Dr. Gurgula. Important"),
+      },
+    },
+    //
+    {
+      params: {
+        thread: "combat-tactics-and-strategies",
+        slug: slugANormal("Hand-to-hand Combat Thread"),
+      },
+    },
+    {
+      params: {
+        thread: "combat-tactics-and-strategies",
+        slug: slugANormal(
+          "Official New Gun Chat thread (re-posting after last one got locked)",
+        ),
+      },
+    },
+    {
+      params: {
+        thread: "combat-tactics-and-strategies",
+        slug: slugANormal("love to break armor!!!"),
+      },
+    },
+    {
+      params: {
+        thread: "combat-tactics-and-strategies",
+        slug: slugANormal("Merkaloids: Evil or Misunderstood? A Discussion"),
+      },
+    },
+    {
+      params: {
+        thread: "combat-tactics-and-strategies",
+        slug: slugANormal("how to deal with melee enemies???"),
+      },
+    },
+    {
+      params: {
+        thread: "combat-tactics-and-strategies",
+        slug: slugANormal("My First Execution Kill!!!! <3"),
+      },
+    },
+    {
+      params: {
+        thread: "combat-tactics-and-strategies",
+        slug: slugANormal("just saw a huge merkalod lol+++"),
+      },
+    },
+    {
+      params: {
+        thread: "combat-tactics-and-strategies",
+        slug: slugANormal("Beware of Jasons"),
+      },
+    },
+    {
+      params: {
+        thread: "combat-tactics-and-strategies",
+        slug: slugANormal("My First Sniper Kill!!!! :O"),
+      },
+    },
+    {
+      params: {
+        thread: "combat-tactics-and-strategies",
+        slug: slugANormal("crazy lucky kill"),
+      },
+    },
+    //
+    {
+      params: {
+        thread: "zephyr-paradise",
+        slug: slugANormal("Fuck Mytes. Need theM gone immediately"),
+      },
+    },
+    {
+      params: {
+        thread: "zephyr-paradise",
+        slug: slugANormal("weird thing on zephyr paradise"),
+      },
+    },
+    {
+      params: {
+        thread: "zephyr-paradise",
+        slug: slugANormal(
+          "The atrocities on Zephyr have to stop [PLEASE READ]",
+        ),
+      },
+    },
+    {
+      params: {
+        thread: "zephyr-paradise",
+        slug: slugANormal("secret G3 labs on zephyr paradise (real)"),
+      },
+    },
+    {
+      params: {
+        thread: "zephyr-paradise",
+        slug: slugANormal("can you trust vendors on zephyr paradise??"),
+      },
+    },
+    //
+    {
+      params: {
+        thread: "port-terrene-hangout",
+        slug: slugANormal("GREEBLES ATE A FUCKING HOLE IN MY SHIP"),
+      },
+    },
+    {
+      params: {
+        thread: "port-terrene-hangout",
+        slug: slugANormal("Exploring port terrene outskirts"),
+      },
+    },
+    {
+      params: {
+        thread: "port-terrene-hangout",
+        slug: slugANormal("Going cowboy mode (product review)"),
+      },
+    },
+    {
+      params: {
+        thread: "port-terrene-hangout",
+        slug: slugANormal("dreg town sucks DEBATE THREAD"),
+      },
+    },
+    {
+      params: {
+        thread: "port-terrene-hangout",
+        slug: slugANormal("port terrene vendor secret"),
+      },
+    },
+  ];
+}
+
+console.log(getStaticPaths());
+
+const { thread, slug } = Astro.params;
+
+const post = {
+  data: { title: "Title", description: "Description" },
+  content: "<p>Content</p>",
+};
+---
+
+<Layout title={post.data.title}>
+  <article>
+    <h1>{post.data.title}</h1>
+    <p>{post.data.description}</p>
+  </article>
+</Layout>
