@@ -4,7 +4,7 @@ import { normalizeSlug } from "../utils/normalizeSlug";
 interface Props {
   thread?: string;
   headers: string[];
-  rows: string[][];
+  rows: { title: string; replies: number; views: number }[];
 }
 
 const { thread, headers, rows } = Astro.props;
@@ -28,17 +28,18 @@ const { thread, headers, rows } = Astro.props;
           <td class="main-cell">
             <a class="main-cell" href="/wahtever">
               <img class="icon" src="/pin.svg" />
-              <p>{r[0]}</p>
+              <p>{r.title}</p>
             </a>
           </td>
           <td class="cell">
             <a class="cell" href="/wahtever">
-              {r[1]}
+              {r.replies}
             </a>
           </td>
           <td class="cell">
-            <a class="cell" href="/wahtever" />
-            {r[2]}
+            <a class="cell" href="/wahtever">
+              {r.views}
+            </a>
           </td>
         </tr>
       ))
@@ -68,7 +69,7 @@ const { thread, headers, rows } = Astro.props;
   .cell {
     text-align: center;
     flex: 1;
-    padding-right: 1.5rem;
+    padding-right: 1rem;
   }
   .main-cell {
     text-align: left;

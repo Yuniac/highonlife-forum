@@ -3,6 +3,9 @@ import Layout from "../../layouts/Layout.astro";
 import Header from "../../components/Header.astro";
 import Table from "../../components/Table.astro";
 import { normalizeSlug } from "../../utils/normalizeSlug";
+import { getEntry } from "astro:content";
+
+const rules = await getEntry("shared", "rules");
 
 export function getStaticPaths() {
   return [
@@ -11,6 +14,10 @@ export function getStaticPaths() {
     { params: { thread: "zephyr-paradise" } },
     { params: { thread: "port-terrene-hangout" } },
   ];
+}
+
+interface Props {
+  thread: string;
 }
 
 const { thread } = Astro.params;
@@ -22,7 +29,13 @@ const { thread } = Astro.params;
     <Table
       thread={thread}
       headers={[normalizeSlug(thread).toUpperCase(), "REPLIES", "VIEWS"]}
-      rows={[[]]}
+      rows={[
+        {
+          title: rules.data.title,
+          replies: rules.data.replies,
+          views: rules.data.views,
+        },
+      ]}
     />
   </div>
 </Layout>

@@ -1,6 +1,6 @@
 import { defineCollection, z } from "astro:content";
 
-const threadSchema = z.object({
+const threadCollectionSchema = z.object({
   title: z.string(),
   description: z.string(),
   comments: z.array(
@@ -14,22 +14,30 @@ const threadSchema = z.object({
 
 const BlimCityCollection = defineCollection({
   type: "content",
-  schema: threadSchema,
+  schema: threadCollectionSchema,
 });
 
 const CombatTacticsCityCollection = defineCollection({
   type: "content",
-  schema: threadSchema,
+  schema: threadCollectionSchema,
 });
 
 const ZypherParadiseCollection = defineCollection({
   type: "content",
-  schema: threadSchema,
+  schema: threadCollectionSchema,
 });
 
 const PortTerreneCollection = defineCollection({
   type: "content",
-  schema: threadSchema,
+  schema: threadCollectionSchema,
+});
+
+//
+
+const threadSchema = z.object({
+  title: z.string(),
+  views: z.number(),
+  replies: z.number(),
 });
 
 export const collections = {
@@ -37,4 +45,5 @@ export const collections = {
   combatTactics: CombatTacticsCityCollection,
   zypherParadise: ZypherParadiseCollection,
   portTerrene: PortTerreneCollection,
+  threadSchema,
 };
