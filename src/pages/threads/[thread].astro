@@ -4,8 +4,9 @@ import Header from "../../components/Header.astro";
 import Table from "../../components/Table.astro";
 import { normalizeSlug } from "../../utils/normalizeSlug";
 import { getEntry } from "astro:content";
-
-const rules = await getEntry("shared", "rules");
+import { getEntries } from "astro:content";
+import { getCollection } from "astro:content";
+import type { ContentEntryMap } from "astro:content";
 
 export function getStaticPaths() {
   return [
@@ -21,6 +22,15 @@ interface Props {
 }
 
 const { thread } = Astro.params;
+
+const rules = await getEntry("shared", "rules");
+const currentThread = await getCollection(thread as keyof ContentEntryMap);
+
+const defaultRow = {
+  title: rules.data.title,
+  replies: rules.data.replies,
+  views: rules.data.views,
+};
 ---
 
 <Layout title={normalizeSlug(thread)}>
@@ -30,11 +40,12 @@ const { thread } = Astro.params;
       thread={thread}
       headers={[normalizeSlug(thread).toUpperCase(), "REPLIES", "VIEWS"]}
       rows={[
-        {
-          title: rules.data.title,
-          replies: rules.data.replies,
-          views: rules.data.views,
-        },
+        defaultRow,
+        ...currentThread.map(({ data }) => ({
+          title: data.title,
+          replies: data.replies,
+          views: data.views,
+        })),
       ]}
     />
   </div>

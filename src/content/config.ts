@@ -41,7 +41,7 @@ const threadSchema = z.object({
 });
 
 export const collections = {
-  blimCity: BlimCityCollection,
+  blimCity22: BlimCityCollection,
   combatTactics: CombatTacticsCityCollection,
   zypherParadise: ZypherParadiseCollection,
   portTerrene: PortTerreneCollection,
