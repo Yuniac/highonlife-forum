@@ -26,6 +26,12 @@ const { thread } = Astro.params;
 const rules = await getEntry("shared", "rules");
 const currentThread = await getCollection(thread as keyof ContentEntryMap);
 
+const rows = currentThread.map((entry) => ({
+  title: entry.data.title,
+  replies: entry.data.replies,
+  views: entry.data.views,
+}));
+
 const defaultRow = {
   title: rules.data.title,
   replies: rules.data.replies,
@@ -39,14 +45,12 @@ const defaultRow = {
     <Table
       thread={thread}
       headers={[normalizeSlug(thread).toUpperCase(), "REPLIES", "VIEWS"]}
-      rows={[
-        defaultRow,
-        ...currentThread.map(({ data }) => ({
-          title: data.title,
-          replies: data.replies,
-          views: data.views,
-        })),
-      ]}
+      rows={[defaultRow]}
     />
-  </div>
-</Layout>
+    <Table
+      thread={thread}
+      headers={[normalizeSlug(thread).toUpperCase(), "REPLIES", "VIEWS"]}
+      rows={rows}
+    />
+  </div></Layout
+>
