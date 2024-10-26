@@ -36,6 +36,7 @@ const defaultRow = {
   title: rules.data.title,
   replies: rules.data.replies,
   views: rules.data.views,
+  root: true,
 };
 ---
 
@@ -52,5 +53,25 @@ const defaultRow = {
       headers={[normalizeSlug(thread).toUpperCase(), "REPLIES", "VIEWS"]}
       rows={rows}
     />
-  </div></Layout
->
+    <button
+      onclick="window.history.go(-1)"
+      class="text-white p-4 rounded-full shadow-lg"
+    >
+      Go Back
+    </button>
+  </div>
+</Layout>
+
+<style>
+  button {
+    position: fixed;
+    bottom: 2.5rem;
+    right: 2.5rem;
+
+    background: linear-gradient(
+      180deg,
+      rgba(58, 80, 183, 1) 16%,
+      rgba(19, 21, 26, 1) 100%
+    );
+  }
+</style>

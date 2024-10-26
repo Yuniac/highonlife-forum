@@ -4,7 +4,7 @@ import { normalizeSlug } from "../utils/normalizeSlug";
 interface Props {
   thread?: string;
   headers: string[];
-  rows: { title: string; replies: number; views: number }[];
+  rows: { title: string; replies: number; views: number; root?: boolean }[];
 }
 
 const { thread, headers, rows } = Astro.props;
@@ -13,7 +13,7 @@ const { thread, headers, rows } = Astro.props;
 <table class="w-full">
   <thead class="table-caption">
     <tr class="flex w-full">
-      <th class="thead main-cell"
+      <th class="thead main-cell justify-center"
         >{thread ? normalizeSlug(thread).toUpperCase() : headers[0]}</th
       >
       <th class="thead">{headers[1]}</th>
@@ -27,7 +27,11 @@ const { thread, headers, rows } = Astro.props;
         <tr class="flex">
           <td class="main-cell">
             <a class="main-cell" href="/wahtever">
-              <img class="icon" src="/pin.svg" />
+              <img
+                class="icon"
+                src={r.root ? "/pin.svg" : "/check.svg"}
+                alt="Pin icon"
+              />
               <p>{r.title}</p>
             </a>
           </td>
@@ -48,6 +52,16 @@ const { thread, headers, rows } = Astro.props;
 </table>
 
 <style>
+  table {
+    border-collapse: collapse;
+  }
+  @media (min-width: 1900px) {
+    table,
+    .thead {
+      margin: 0 auto;
+      width: 70%;
+    }
+  }
   .thead {
     background-color: #23262d;
     color: white;
@@ -70,9 +84,11 @@ const { thread, headers, rows } = Astro.props;
     text-align: center;
     flex: 1;
     padding-right: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .main-cell {
-    text-align: left;
     padding: 0 1rem;
     flex: 3;
     display: flex;
