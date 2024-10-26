@@ -1,6 +1,6 @@
 ---
-title: I LOVE GUNS
-description: HEY THERE!
-comments: [whatever]
-slug: i-love-guns
+title: BLIM CITY BANTER
+description: General discussion about Blim City, the Blim City Slums, and anything else aroudn town
+comments: []
+slug: blim-city-banter
 ---

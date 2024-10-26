@@ -1,6 +1,6 @@
 ---
-title: HUGGE
-description: Very long description I guess...
+title: COMBAT TACTICS AND STRATEGIES
+description: the ONLY section of the forums to discuss combat tactics and bounty hunting strategies
 comments:
   - author: John Doe
     content: |
@@ -8,5 +8,5 @@ comments:
       It could contain paragraphs, lists, or even code blocks.
   - author: Jane Smith
     content: Another shorter comment
-slug: HUGGE
+slug: combat-tactics-and-strategies
 ---

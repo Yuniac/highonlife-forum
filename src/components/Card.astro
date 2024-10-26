@@ -18,26 +18,15 @@ const {
 const entry = await getEntry("blim-city", slug);
 ---
 
-<li>
+<a class="flex gap-4 overflow-scroll" href={`/${slug}`}>
   <div class="container">
     <div class="link-card">
-      <a href="{href}">
-        <h2>{title}</h2>
-        <p>{description}</p>
-      </a>
+      <h2>{title}</h2>
+      <p>{description}</p>
     </div>
   </div>
-  <ul>
-    {
-      comments.map((c) => (
-        <li>
-          <a>{c.author}</a>
-          <p>{c.content}</p>
-        </li>
-      ))
-    }
-  </ul>
-</li>
+  <hr class="bordered-container" />
+</a>
 
 <style>
   .container {
@@ -59,37 +48,37 @@ const entry = await getEntry("blim-city", slug);
     }
   }
 
+  .bordered-container:not(:first) {
+    border-top: 1px solid var(--main);
+    border-bottom: 1px solid var(--main);
+  }
+
   .link-card {
     list-style: none;
     display: flex;
+    flex-direction: column;
     padding: 1px;
     background-color: #23262d;
-    background-image: none;
-    background-size: 400%;
-    border: 1px solid white;
     box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+    padding: 1.3rem;
   }
-  .link-card > a {
-    width: 100%;
-    text-decoration: none;
-    line-height: 1.4;
-    padding: calc(1.5rem - 1px);
-    border-radius: 8px;
-    color: white;
-    background-color: #23262d;
-    opacity: 0.8;
+  .link-card:hover {
+    border: 1px solid white;
   }
+
   h2 {
     margin: 0;
     font-size: 1.25rem;
     transition: color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
     border-bottom: 1px solid var(--main);
     width: fit-content;
+    color: var(--main);
   }
   p {
     margin-top: 0.5rem;
     margin-bottom: 0;
     font-size: 0.75rem;
+    color: var(--main);
   }
   .link-card:is(:hover, :focus-within) {
     background-position: 0;
